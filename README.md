@@ -1,12 +1,12 @@
-# Q-BypassGPT
+# Q-Interference
 
-Q-BypassGPT is a GPT-style language model with **quantum-inspired phase-aware attention** and an **exact memory-bypassed factorization**.
+Q-Interference is a GPT-style language model with **quantum-inspired phase-aware attention** and an **exact memory-bypassed factorization**.
 
 The model keeps the standard GPT backbone and only changes the attention compatibility score:
 
 - **Baseline GPT**: standard scaled dot-product attention
 - **Naive interference attention**: direct phase-aware token-pair-feature interaction
-- **Q-BypassGPT**: exact trigonometric factorization that avoids explicitly materializing the large `T x T x d_h` intermediate tensor
+- **Q-Interference**: exact trigonometric factorization that avoids explicitly materializing the large `T x T x d_h` intermediate tensor
 
 This repository is designed as a **VS Code-ready starter project** for:
 
@@ -18,7 +18,7 @@ This repository is designed as a **VS Code-ready starter project** for:
 ## Repository layout
 
 ```text
-Q-BypassGPT/
+Q-Interference/
 ├── .vscode/
 ├── configs/
 ├── scripts/
@@ -36,7 +36,7 @@ Q-BypassGPT/
 You should run experiments in this order:
 
 1. **Debug**: single GPU, tiny config
-2. **Controlled comparison**: baseline GPT vs Q-BypassGPT
+2. **Controlled comparison**: baseline GPT vs Q-Interference
 3. **Ablation study**
 4. **Memory profiling across sequence lengths**
 5. **Larger multi-GPU runs**
@@ -116,7 +116,7 @@ python -m q_bypass_gpt.profiler --config configs/debug_qbypass.yaml
 ### Key ablations
 - baseline GPT
 - naive interference attention
-- Q-BypassGPT
+- Q-Interference
 - no-phase variant
 - different amplitude activations
 - different phase bounding strategies
