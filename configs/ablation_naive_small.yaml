@@ -1,0 +1,49 @@
+experiment:
+  name: ablation_naive_small
+  output_dir: outputs
+
+data:
+  dataset_name: wikitext
+  dataset_config: wikitext-2-raw-v1
+  tokenizer_name: gpt2
+  block_size: 64
+  batch_size: 4
+  eval_batch_size: 4
+  num_workers: 2
+
+model:
+  n_layer: 2
+  n_head: 4
+  d_model: 128
+  dropout: 0.1
+  bias: false
+  attention_type: interference_naive
+  amplitude_activation: softplus
+  phase_bound: pi_tanh
+  disable_phase: false
+
+train:
+  seed: 42
+  epochs: 5
+  max_steps: 100
+  lr: 0.0003
+  min_lr: 0.00003
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  warmup_steps: 10
+  grad_clip: 1.0
+  grad_accum_steps: 1
+  eval_interval: 20
+  log_interval: 10
+  save_interval: 50
+  mixed_precision: false
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 20
+
+generation:
+  max_new_tokens: 40
+  temperature: 0.8
+  top_k: 20

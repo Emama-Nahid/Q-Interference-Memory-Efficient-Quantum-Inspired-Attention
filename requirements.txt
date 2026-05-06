@@ -1,0 +1,17 @@
+torch
+torchvision
+torchaudio
+transformers
+datasets
+tokenizers
+sentencepiece
+numpy
+pandas
+matplotlib
+scikit-learn
+tqdm
+pyyaml
+rich
+einops
+pytest
+wandb

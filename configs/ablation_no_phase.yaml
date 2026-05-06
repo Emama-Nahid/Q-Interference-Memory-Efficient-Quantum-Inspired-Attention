@@ -1,0 +1,49 @@
+experiment:
+  name: ablation_no_phase
+  output_dir: outputs
+
+data:
+  dataset_name: wikitext
+  dataset_config: wikitext-2-raw-v1
+  tokenizer_name: gpt2
+  block_size: 256
+  batch_size: 8
+  eval_batch_size: 8
+  num_workers: 2
+
+model:
+  n_layer: 6
+  n_head: 8
+  d_model: 512
+  dropout: 0.1
+  bias: false
+  attention_type: interference_bypass
+  amplitude_activation: softplus
+  phase_bound: pi_tanh
+  disable_phase: true
+
+train:
+  seed: 42
+  epochs: 10
+  max_steps: 2000
+  lr: 0.0003
+  min_lr: 0.00003
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  warmup_steps: 100
+  grad_clip: 1.0
+  grad_accum_steps: 1
+  eval_interval: 100
+  log_interval: 20
+  save_interval: 200
+  mixed_precision: true
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 100
+
+generation:
+  max_new_tokens: 100
+  temperature: 0.8
+  top_k: 50

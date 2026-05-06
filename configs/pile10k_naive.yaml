@@ -1,0 +1,55 @@
+experiment:
+  name: pile10k_naive
+  output_dir: outputs
+
+data:
+  dataset_name: NeelNanda/pile-10k
+  dataset_config: null
+  tokenizer_name: gpt2
+  text_column: text
+  block_size: 256
+  batch_size: 2
+  eval_batch_size: 2
+  num_workers: 4
+  validation_ratio: 0.05
+  test_ratio: 0.05
+  split_seed: 42
+  max_train_tokens: 5000000
+  max_eval_tokens: 1000000
+
+model:
+  n_layer: 12
+  n_head: 12
+  d_model: 720
+  dropout: 0.0
+  bias: false
+  attention_type: interference_naive
+  amplitude_activation: softplus
+  phase_bound: pi_tanh
+  disable_phase: false
+
+train:
+  seed: 42
+  epochs: 10
+  max_steps: 2000
+  lr: 0.0003
+  min_lr: 0.00003
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  warmup_steps: 200
+  grad_clip: 1.0
+  grad_accum_steps: 16
+  eval_interval: 250
+  log_interval: 20
+  save_interval: 500
+  mixed_precision: true
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 100
+
+generation:
+  max_new_tokens: 120
+  temperature: 0.8
+  top_k: 50

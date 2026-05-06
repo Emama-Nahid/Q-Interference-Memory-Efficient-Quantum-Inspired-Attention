@@ -1,0 +1,49 @@
+experiment:
+  name: tinystories_opt125
+  output_dir: outputs
+
+data:
+  dataset_name: roneneldan/TinyStories
+  dataset_config: null
+  tokenizer_name: facebook/opt-125m
+  text_column: text
+  block_size: 512
+  batch_size: 8
+  eval_batch_size: 8
+  num_workers: 4
+  validation_ratio: 0.05
+  test_ratio: 0.05
+  split_seed: 42
+  max_train_tokens: 20000000
+  max_eval_tokens: 2000000
+
+model:
+  model_type: hf_causal_lm
+  pretrained_model_name: facebook/opt-125m
+  attention_type: hf_opt125
+
+train:
+  seed: 42
+  epochs: 10
+  max_steps: 5000
+  lr: 0.0003
+  min_lr: 0.00003
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  warmup_steps: 500
+  grad_clip: 1.0
+  grad_accum_steps: 4
+  eval_interval: 250
+  log_interval: 20
+  save_interval: 1000
+  mixed_precision: true
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 200
+
+generation:
+  max_new_tokens: 120
+  temperature: 0.8
+  top_k: 50

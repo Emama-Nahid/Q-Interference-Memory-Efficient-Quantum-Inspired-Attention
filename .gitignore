@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.env
+.vscode/
+outputs/
+data/
+datasets/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+wandb/
+.DS_Store

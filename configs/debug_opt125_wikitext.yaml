@@ -1,0 +1,43 @@
+experiment:
+  name: debug_opt125_wikitext
+  output_dir: outputs
+
+data:
+  dataset_name: wikitext
+  dataset_config: wikitext-103-raw-v1
+  tokenizer_name: facebook/opt-125m
+  block_size: 512
+  batch_size: 2
+  eval_batch_size: 2
+  num_workers: 4
+
+model:
+  model_type: hf_causal_lm
+  pretrained_model_name: facebook/opt-125m
+  attention_type: hf_opt125
+
+train:
+  seed: 42
+  epochs: 10
+  max_steps: 50
+  lr: 0.00005
+  min_lr: 0.000005
+  weight_decay: 0.01
+  betas: [0.9, 0.95]
+  warmup_steps: 10
+  grad_clip: 1.0
+  grad_accum_steps: 16
+  eval_interval: 25
+  log_interval: 5
+  save_interval: 50
+  mixed_precision: true
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 20
+
+generation:
+  max_new_tokens: 120
+  temperature: 0.8
+  top_k: 50

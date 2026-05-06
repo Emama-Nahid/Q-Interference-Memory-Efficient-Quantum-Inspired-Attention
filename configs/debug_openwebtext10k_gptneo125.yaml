@@ -1,0 +1,49 @@
+experiment:
+  name: debug_openwebtext10k_gptneo125
+  output_dir: outputs
+
+data:
+  dataset_name: stas/openwebtext-10k
+  dataset_config: null
+  tokenizer_name: EleutherAI/gpt-neo-125m
+  text_column: text
+  block_size: 512
+  batch_size: 8
+  eval_batch_size: 8
+  num_workers: 4
+  validation_ratio: 0.05
+  test_ratio: 0.05
+  split_seed: 42
+  max_train_tokens: 2000000
+  max_eval_tokens: 200000
+
+model:
+  model_type: hf_causal_lm
+  pretrained_model_name: EleutherAI/gpt-neo-125m
+  attention_type: hf_gptneo125
+
+train:
+  seed: 42
+  epochs: 10
+  max_steps: 50
+  lr: 0.0003
+  min_lr: 0.00003
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  warmup_steps: 10
+  grad_clip: 1.0
+  grad_accum_steps: 4
+  eval_interval: 25
+  log_interval: 5
+  save_interval: 50
+  mixed_precision: true
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 20
+
+generation:
+  max_new_tokens: 120
+  temperature: 0.8
+  top_k: 50

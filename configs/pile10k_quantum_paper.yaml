@@ -1,0 +1,52 @@
+experiment:
+  name: pile10k_quantum_paper
+  output_dir: outputs
+
+data:
+  dataset_name: NeelNanda/pile-10k
+  dataset_config: null
+  tokenizer_name: gpt2
+  text_column: text
+  block_size: 512
+  batch_size: 8
+  eval_batch_size: 8
+  num_workers: 4
+  validation_ratio: 0.05
+  test_ratio: 0.05
+  split_seed: 42
+  max_train_tokens: 10000000
+  max_eval_tokens: 1000000
+
+model:
+  n_layer: 12
+  n_head: 12
+  d_model: 768
+  dropout: 0.1
+  bias: false
+  attention_type: quantum_paper
+
+train:
+  seed: 42
+  epochs: 10
+  max_steps: 5000
+  lr: 0.00010
+  min_lr: 0.00001
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  warmup_steps: 500
+  grad_clip: 0.5
+  grad_accum_steps: 4
+  eval_interval: 250
+  log_interval: 20
+  save_interval: 1000
+  mixed_precision: true
+  compile: false
+  detect_anomaly: false
+
+eval:
+  max_eval_batches: 200
+
+generation:
+  max_new_tokens: 120
+  temperature: 0.8
+  top_k: 50

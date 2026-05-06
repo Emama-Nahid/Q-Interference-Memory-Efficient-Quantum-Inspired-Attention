@@ -1,0 +1,46 @@
+data:
+  batch_size: 2
+  block_size: 512
+  dataset_config: wikitext-103-raw-v1
+  dataset_name: wikitext
+  eval_batch_size: 2
+  num_workers: 4
+  tokenizer_name: gpt2
+eval:
+  max_eval_batches: 200
+experiment:
+  name: wikitext103_baseline_seed11
+  output_dir: outputs
+generation:
+  max_new_tokens: 120
+  temperature: 0.8
+  top_k: 50
+model:
+  amplitude_activation: softplus
+  attention_type: baseline
+  bias: false
+  d_model: 768
+  disable_phase: false
+  dropout: 0.1
+  n_head: 12
+  n_layer: 12
+  phase_bound: pi_tanh
+train:
+  betas:
+  - 0.9
+  - 0.95
+  compile: false
+  detect_anomaly: false
+  epochs: 10
+  eval_interval: 500
+  grad_accum_steps: 16
+  grad_clip: 1.0
+  log_interval: 20
+  lr: 0.0003
+  max_steps: 20000
+  min_lr: 3.0e-05
+  mixed_precision: true
+  save_interval: 1000
+  seed: 11
+  warmup_steps: 1000
+  weight_decay: 0.1
